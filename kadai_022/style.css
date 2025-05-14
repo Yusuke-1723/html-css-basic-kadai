@@ -1,0 +1,127 @@
+h1,
+p,
+body {
+    margin: 0;
+}
+
+p,
+a {
+    font-size: 20px;
+}
+
+header {
+    margin-bottom: 20px;
+    background-color: rgb(244, 79, 79);
+    text-align: center;
+}
+
+header h1 {
+    color: rgb(255, 255, 255);
+}
+
+main {
+    padding: 10px;
+}
+
+#parent {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.contents {
+    border: 3px solid rgb(238, 204, 204);
+    flex-basis: 25%;
+    /* 要素内の余白は上下10px、左右15pxにします。 */
+    padding: 10px 15px;
+    /* 要素外の余白は上下20px、左右0にします。 */
+    margin: 20px 0;
+    /* 中の要素が中央揃えになるようにします。 */
+    text-align: center;
+}
+
+/* h2要素について、以下のスタイルを設定します。 */
+.contents h2 {
+    /* h2要素のフォントサイズを25pxに */
+    font-size: 25px;
+    /* 下線（太さ3px、点線、色rgb(236, 122, 122)）を引きます。 */
+    border-bottom: 3px dotted rgb(236, 122, 122);
+    /* 下線とテキストの間に少し余白 */
+    padding-bottom: 5px;
+    /* 記号のためのスペース確保 */
+    position: relative; /* ::beforeの基準位置とするため */
+}
+
+/* h2要素の前に「●」記号を表示します。色はrgb(239, 111, 139)とします。 */
+.contents h2::before {
+    content: "●";
+    color: rgb(239, 111, 139);
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+
+.contents p:nth-of-type(2):first-letter {
+    font-weight: bold;
+    color: rgb(97, 206, 249);
+}
+
+
+/* Step7. レスポンシブ対応のスタイル */
+/* 画面幅768px以下になったら表示が変わるようにブレークポイントを設定します。 */
+@media (max-width: 768px) {
+    /* h2のフォントサイズは30pxとします。 */
+    .contents h2 {
+        font-size: 30px;
+    }
+
+    /* pのフォントサイズは25pxとします。 */
+    /* Step3でp全体のフォントサイズを20pxにしているので、ここで上書き */
+    p {
+        font-size: 25px;
+    }
+
+    /* Flexboxコンテナであるid名parent内の要素が縦に並ぶようにします。 */
+    #parent {
+        flex-direction: column; /* 要素を縦方向に並べる */
+        /* 縦並びになったら justify-content は不要になるか、center などに変更 */
+        justify-content: center;
+        align-items: center; /* 縦並びにした要素を中央揃えにする */
+    }
+
+    /* 縦並びになった際に.contentsの幅を調整 */
+    .contents {
+        flex-basis: auto; /* flex-direction: column; の場合はautoが一般的 */
+        width: 90%; /* 例: 親要素の90%の幅にする */
+        max-width: 500px; /* 例: 最大幅を設定 */
+    }
+
+    /* レスポンシブ時の二番目のp要素の最初の文字スタイルも調整が必要ならここに記述 */
+    /* 今回は特に指示がないので、768px以上のスタイルがそのまま適用されます */
+}
+
+
+footer {
+    /* 背景色はrgb(244, 79, 79)にします。 */
+    background-color: rgb(244, 79, 79);
+    /* 中身の要素が中央揃えになるようにします。 */
+    text-align: center;
+    padding: 10px 0; /* 見栄えのため追加 */
+}
+
+/* a要素には、以下のスタイルを設定します。 */
+footer a {
+    /* 文字色はrgb(255, 255, 255)にします。 */
+    color: rgb(255, 255, 255);
+    text-decoration: none; /* デフォルトの下線を消す */
+}
+
+/* 訪問済みリンクの文字色がrgb(193, 234, 251)に変化するようにします。 */
+footer a:visited {
+    color: rgb(193, 234, 251);
+}
+
+/* マウスカーソルが乗ると文字色がrgb(245, 178, 168)に変化するようにします */
+footer a:hover {
+    color: rgb(245, 178, 168);
+}
